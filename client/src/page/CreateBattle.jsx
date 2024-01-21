@@ -9,10 +9,7 @@ const CreateBattle = () => {
 export default PageHOC(
   CreateBattle,
   <>
-    Welcome to Avax Gods <br /> a Web3 NFT Card Game
+    Create <br /> a new Battle
   </>,
-  <>
-    Connect your wallet to start playing <br /> the ultimate Web3 Battle Card
-    Game
-  </>
+  <>Create your own battle and wait for other player to join you</>
 );
