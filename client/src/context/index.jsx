@@ -34,20 +34,20 @@ export const GlobalContextProvider = ({ children }) => {
   }, []);
 
   // Set the smart contract and the provider to the state
-  //   useEffect(() => {
-  //     const setSmartContractAndProvider = async () => {
-  //       const web3Modal = new Web3Modal();
-  //       const connection = await web3Modal.connect();
-  //       const newProvider = new ethers.providers.Web3Provider(connection);
-  //       const signer = newProvider.signer();
-  //       const newContract = new ethers.Contract(ADDRESS, ABI, signer);
+  useEffect(() => {
+    const setSmartContractAndProvider = async () => {
+      const web3Modal = new Web3Modal();
+      const connection = await web3Modal.connect();
+      const newProvider = new ethers.providers.Web3Provider(connection);
+      const signer = newProvider.signer();
+      const newContract = new ethers.Contract(ADDRESS, ABI, signer);
 
-  //       setProvider(newProvider);
-  //       setContract(newContract);
-  //     };
+      setProvider(newProvider);
+      setContract(newContract);
+    };
 
-  //     setSmartContractAndProvider();
-  //   }, []);
+    setSmartContractAndProvider();
+  }, []);
 
   return (
     <GlobalContext.Provider value={{ demo: "test" }}>
