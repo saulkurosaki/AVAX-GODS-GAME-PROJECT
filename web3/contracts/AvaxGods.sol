@@ -457,32 +457,32 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   }
 
   // Turns uint256 into string
-//   function uintToStr(uint256 _i) internal pure returns (string memory _uintAsString) {
-//     if (_i == 0) {
-//       return '0';
-//     }
-//     uint256 j = _i;
-//     uint256 len;
-//     while (j != 0) {
-//       len++;
-//       j /= 10;
-//     }
-//     bytes memory bstr = new bytes(len);
-//     uint256 k = len;
-//     while (_i != 0) {
-//       k = k - 1;
-//       uint8 temp = (48 + uint8(_i - (_i / 10) * 10));
-//       bytes1 b1 = bytes1(temp);
-//       bstr[k] = b1;
-//       _i /= 10;
-//     }
-//     return string(bstr);
-//   }
+  function uintToStr(uint256 _i) internal pure returns (string memory _uintAsString) {
+    if (_i == 0) {
+      return '0';
+    }
+    uint256 j = _i;
+    uint256 len;
+    while (j != 0) {
+      len++;
+      j /= 10;
+    }
+    bytes memory bstr = new bytes(len);
+    uint256 k = len;
+    while (_i != 0) {
+      k = k - 1;
+      uint8 temp = (48 + uint8(_i - (_i / 10) * 10));
+      bytes1 b1 = bytes1(temp);
+      bstr[k] = b1;
+      _i /= 10;
+    }
+    return string(bstr);
+  }
 
   // Token URI getter function
-//   function tokenURI(uint256 tokenId) public view returns (string memory) {
-//     return string(abi.encodePacked(baseURI, '/', uintToStr(tokenId), '.json'));
-//   }
+  function tokenURI(uint256 tokenId) public view returns (string memory) {
+    return string(abi.encodePacked(baseURI, '/', uintToStr(tokenId), '.json'));
+  }
 
   // The following functions are overrides required by Solidity.
 //   function _beforeTokenTransfer(
