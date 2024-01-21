@@ -112,12 +112,12 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   }
 
   // Events
-//   event NewPlayer(address indexed owner, string name);
-//   event NewBattle(string battleName, address indexed player1, address indexed player2);
-//   event BattleEnded(string battleName, address indexed winner, address indexed loser);
-//   event BattleMove(string indexed battleName, bool indexed isFirstMove);
-//   event NewGameToken(address indexed owner, uint256 id, uint256 attackStrength, uint256 defenseStrength);
-//   event RoundEnded(address[2] damagedPlayers);
+  event NewPlayer(address indexed owner, string name);
+  event NewBattle(string battleName, address indexed player1, address indexed player2);
+  event BattleEnded(string battleName, address indexed winner, address indexed loser);
+  event BattleMove(string indexed battleName, bool indexed isFirstMove);
+  event NewGameToken(address indexed owner, uint256 id, uint256 attackStrength, uint256 defenseStrength);
+  event RoundEnded(address[2] damagedPlayers);
 
   /// @dev Initializes the contract by setting a `metadataURI` to the token collection
   /// @param _metadataURI baseURI where token metadata is stored
