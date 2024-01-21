@@ -25,12 +25,12 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   enum BattleStatus{ PENDING, STARTED, ENDED }
 
   /// @dev GameToken struct to store player token info
-//   struct GameToken {
-//     string name; /// @param name battle card name; set by player
-//     uint256 id; /// @param id battle card token id; will be randomly generated
-//     uint256 attackStrength; /// @param attackStrength battle card attack; generated randomly
-//     uint256 defenseStrength; /// @param defenseStrength battle card defense; generated randomly
-//   }
+  struct GameToken {
+    string name; /// @param name battle card name; set by player
+    uint256 id; /// @param id battle card token id; will be randomly generated
+    uint256 attackStrength; /// @param attackStrength battle card attack; generated randomly
+    uint256 defenseStrength; /// @param defenseStrength battle card defense; generated randomly
+  }
 
   /// @dev Player struct to store player info
 //   struct Player {
