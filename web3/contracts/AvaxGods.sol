@@ -249,14 +249,14 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   }
 
   // Read battle move info for player 1 and player 2
-//   function getBattleMoves(string memory _battleName) public view returns (uint256 P1Move, uint256 P2Move) {
-//     Battle memory _battle = getBattle(_battleName);
+  function getBattleMoves(string memory _battleName) public view returns (uint256 P1Move, uint256 P2Move) {
+    Battle memory _battle = getBattle(_battleName);
 
-//     P1Move = _battle.moves[0];
-//     P2Move = _battle.moves[1];
+    P1Move = _battle.moves[0];
+    P2Move = _battle.moves[1];
 
-//     return (P1Move, P2Move);
-//   }
+    return (P1Move, P2Move);
+  }
 
 //   function _registerPlayerMove(uint256 _player, uint8 _choice, string memory _battleName) internal {
 //     require(_choice == 1 || _choice == 2, "Choice should be either 1 or 2!");
