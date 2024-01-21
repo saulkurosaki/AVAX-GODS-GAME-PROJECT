@@ -42,14 +42,14 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   }
 
   /// @dev Battle struct to store battle info
-//   struct Battle {
-//     BattleStatus battleStatus; /// @param battleStatus enum to indicate battle status
-//     bytes32 battleHash; /// @param battleHash a hash of the battle name
-//     string name; /// @param name battle name; set by player who creates battle
-//     address[2] players; /// @param players address array representing players in this battle
-//     uint8[2] moves; /// @param moves uint array representing players' move
-//     address winner; /// @param winner winner address
-//   }
+  struct Battle {
+    BattleStatus battleStatus; /// @param battleStatus enum to indicate battle status
+    bytes32 battleHash; /// @param battleHash a hash of the battle name
+    string name; /// @param name battle name; set by player who creates battle
+    address[2] players; /// @param players address array representing players in this battle
+    uint8[2] moves; /// @param moves uint array representing players' move
+    address winner; /// @param winner winner address
+  }
 
   mapping(address => uint256) public playerInfo; // Mapping of player addresses to player index in the players array
   mapping(address => uint256) public playerTokenInfo; // Mapping of player addresses to player token index in the gameTokens array
