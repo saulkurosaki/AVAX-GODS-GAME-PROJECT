@@ -421,12 +421,12 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
     gameTokens[playerTokenInfo[_battle.players[1]]].defenseStrength = MAX_ATTACK_DEFEND_STRENGTH - _randomAttackStrengthPlayer2;   
   }
 
-//   function quitBattle(string memory _battleName) public {
-//     Battle memory _battle = getBattle(_battleName);
-//     require(_battle.players[0] == msg.sender || _battle.players[1] == msg.sender, "You are not in this battle!");
+  function quitBattle(string memory _battleName) public {
+    Battle memory _battle = getBattle(_battleName);
+    require(_battle.players[0] == msg.sender || _battle.players[1] == msg.sender, "You are not in this battle!");
 
-//     _battle.players[0] == msg.sender ? _endBattle(_battle.players[1], _battle) : _endBattle(_battle.players[0], _battle);
-//   }
+    _battle.players[0] == msg.sender ? _endBattle(_battle.players[1], _battle) : _endBattle(_battle.players[0], _battle);
+  }
 
   /// @dev internal function to end the battle
   /// @param battleEnder winner address
