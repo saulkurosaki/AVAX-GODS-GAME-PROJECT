@@ -16,7 +16,7 @@ const Home = () => {
         handleValueChange={setPlayerName}
       />
 
-      <CustomButton title="Register" handleClick={() => {}} restStyles="mt-6" />
+      <CustomButton title="Register" handleClick={() => {}} restStyles="mt-5" />
     </div>
   );
 };
