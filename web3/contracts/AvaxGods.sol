@@ -33,13 +33,13 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   }
 
   /// @dev Player struct to store player info
-//   struct Player {
-//     address playerAddress; /// @param playerAddress player wallet address
-//     string playerName; /// @param playerName player name; set by player during registration
-//     uint256 playerMana; /// @param playerMana player mana; affected by battle results
-//     uint256 playerHealth; /// @param playerHealth player health; affected by battle results
-//     bool inBattle; /// @param inBattle boolean to indicate if a player is in battle
-//   }
+  struct Player {
+    address playerAddress; /// @param playerAddress player wallet address
+    string playerName; /// @param playerName player name; set by player during registration
+    uint256 playerMana; /// @param playerMana player mana; affected by battle results
+    uint256 playerHealth; /// @param playerHealth player health; affected by battle results
+    bool inBattle; /// @param inBattle boolean to indicate if a player is in battle
+  }
 
   /// @dev Battle struct to store battle info
 //   struct Battle {
