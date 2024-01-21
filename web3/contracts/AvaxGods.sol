@@ -200,9 +200,9 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
     _createGameToken(_name); // Creates game token
   }
 
-//   function getTotalSupply() external view returns (uint256) {
-//     return totalSupply;
-//   }
+  function getTotalSupply() external view returns (uint256) {
+    return totalSupply;
+  }
 
   /// @dev Creates a new battle
   /// @param _name battle name; set by player
