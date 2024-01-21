@@ -230,23 +230,23 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
 
   /// @dev Player joins battle
   /// @param _name battle name; name of battle player wants to join
-//   function joinBattle(string memory _name) external returns (Battle memory) {
-//     Battle memory _battle = getBattle(_name);
+  function joinBattle(string memory _name) external returns (Battle memory) {
+    Battle memory _battle = getBattle(_name);
 
-//     require(_battle.battleStatus == BattleStatus.PENDING, "Battle already started!"); // Require that battle has not started
-//     require(_battle.players[0] != msg.sender, "Only player two can join a battle"); // Require that player 2 is joining the battle
-//     require(!getPlayer(msg.sender).inBattle, "Already in battle"); // Require that player is not already in a battle
+    require(_battle.battleStatus == BattleStatus.PENDING, "Battle already started!"); // Require that battle has not started
+    require(_battle.players[0] != msg.sender, "Only player two can join a battle"); // Require that player 2 is joining the battle
+    require(!getPlayer(msg.sender).inBattle, "Already in battle"); // Require that player is not already in a battle
     
-//     _battle.battleStatus = BattleStatus.STARTED;
-//     _battle.players[1] = msg.sender;
-//     updateBattle(_name, _battle);
+    _battle.battleStatus = BattleStatus.STARTED;
+    _battle.players[1] = msg.sender;
+    updateBattle(_name, _battle);
 
-//     players[playerInfo[_battle.players[0]]].inBattle = true;
-//     players[playerInfo[_battle.players[1]]].inBattle = true;
+    players[playerInfo[_battle.players[0]]].inBattle = true;
+    players[playerInfo[_battle.players[1]]].inBattle = true;
 
-//     emit NewBattle(_battle.name, _battle.players[0], msg.sender); // Emits NewBattle event
-//     return _battle;
-//   }
+    emit NewBattle(_battle.name, _battle.players[0], msg.sender); // Emits NewBattle event
+    return _battle;
+  }
 
   // Read battle move info for player 1 and player 2
 //   function getBattleMoves(string memory _battleName) public view returns (uint256 P1Move, uint256 P2Move) {
