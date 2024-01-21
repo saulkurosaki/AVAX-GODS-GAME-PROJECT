@@ -265,34 +265,34 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   }
 
   // User chooses attack or defense move for battle card
-//   function attackOrDefendChoice(uint8 _choice, string memory _battleName) external {
-//     Battle memory _battle = getBattle(_battleName);
+  function attackOrDefendChoice(uint8 _choice, string memory _battleName) external {
+    Battle memory _battle = getBattle(_battleName);
 
-//     require(
-//         _battle.battleStatus == BattleStatus.STARTED,
-//         "Battle not started. Please tell another player to join the battle"
-//     ); // Require that battle has started
-//     require(
-//         _battle.battleStatus != BattleStatus.ENDED,
-//         "Battle has already ended"
-//     ); // Require that battle has not ended
-//     require(
-//       msg.sender == _battle.players[0] || msg.sender == _battle.players[1],
-//       "You are not in this battle"
-//     ); // Require that player is in the battle
+    require(
+        _battle.battleStatus == BattleStatus.STARTED,
+        "Battle not started. Please tell another player to join the battle"
+    ); // Require that battle has started
+    require(
+        _battle.battleStatus != BattleStatus.ENDED,
+        "Battle has already ended"
+    ); // Require that battle has not ended
+    require(
+      msg.sender == _battle.players[0] || msg.sender == _battle.players[1],
+      "You are not in this battle"
+    ); // Require that player is in the battle
 
-//     require(_battle.moves[_battle.players[0] == msg.sender ? 0 : 1] == 0, "You have already made a move!");
+    require(_battle.moves[_battle.players[0] == msg.sender ? 0 : 1] == 0, "You have already made a move!");
 
-//     _registerPlayerMove(_battle.players[0] == msg.sender ? 0 : 1, _choice, _battleName);
+    _registerPlayerMove(_battle.players[0] == msg.sender ? 0 : 1, _choice, _battleName);
 
-//     _battle = getBattle(_battleName);
-//     uint _movesLeft = 2 - (_battle.moves[0] == 0 ? 0 : 1) - (_battle.moves[1] == 0 ? 0 : 1);
-//     emit BattleMove(_battleName, _movesLeft == 1 ? true : false);
+    _battle = getBattle(_battleName);
+    uint _movesLeft = 2 - (_battle.moves[0] == 0 ? 0 : 1) - (_battle.moves[1] == 0 ? 0 : 1);
+    emit BattleMove(_battleName, _movesLeft == 1 ? true : false);
     
-//     if(_movesLeft == 0) {
-//       _awaitBattleResults(_battleName);
-//     }
-//   }
+    if(_movesLeft == 0) {
+      _awaitBattleResults(_battleName);
+    }
+  }
 
   // Awaits battle results
 //   function _awaitBattleResults(string memory _battleName) internal {
