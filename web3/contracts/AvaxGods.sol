@@ -206,27 +206,27 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
 
   /// @dev Creates a new battle
   /// @param _name battle name; set by player
-//   function createBattle(string memory _name) external returns (Battle memory) {
-//     require(isPlayer(msg.sender), "Please Register Player First"); // Require that the player is registered
-//     require(!isBattle(_name), "Battle already exists!"); // Require battle with same name should not exist
+  function createBattle(string memory _name) external returns (Battle memory) {
+    require(isPlayer(msg.sender), "Please Register Player First"); // Require that the player is registered
+    require(!isBattle(_name), "Battle already exists!"); // Require battle with same name should not exist
 
-//     bytes32 battleHash = keccak256(abi.encode(_name));
+    bytes32 battleHash = keccak256(abi.encode(_name));
     
-//     Battle memory _battle = Battle(
-//       BattleStatus.PENDING, // Battle pending
-//       battleHash, // Battle hash
-//       _name, // Battle name
-//       [msg.sender, address(0)], // player addresses; player 2 empty until they joins battle
-//       [0, 0], // moves for each player
-//       address(0) // winner address; empty until battle ends
-//     );
+    Battle memory _battle = Battle(
+      BattleStatus.PENDING, // Battle pending
+      battleHash, // Battle hash
+      _name, // Battle name
+      [msg.sender, address(0)], // player addresses; player 2 empty until they joins battle
+      [0, 0], // moves for each player
+      address(0) // winner address; empty until battle ends
+    );
 
-//     uint256 _id = battles.length;
-//     battleInfo[_name] = _id;
-//     battles.push(_battle);
+    uint256 _id = battles.length;
+    battleInfo[_name] = _id;
+    battles.push(_battle);
     
-//     return _battle;
-//   }
+    return _battle;
+  }
 
   /// @dev Player joins battle
   /// @param _name battle name; name of battle player wants to join
