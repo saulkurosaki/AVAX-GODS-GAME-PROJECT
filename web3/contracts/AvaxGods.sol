@@ -258,11 +258,11 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
     return (P1Move, P2Move);
   }
 
-//   function _registerPlayerMove(uint256 _player, uint8 _choice, string memory _battleName) internal {
-//     require(_choice == 1 || _choice == 2, "Choice should be either 1 or 2!");
-//     require(_choice == 1 ? getPlayer(msg.sender).playerMana >= 3 : true, "Mana not sufficient for attacking!");
-//     battles[battleInfo[_battleName]].moves[_player] = _choice;
-//   }
+  function _registerPlayerMove(uint256 _player, uint8 _choice, string memory _battleName) internal {
+    require(_choice == 1 || _choice == 2, "Choice should be either 1 or 2!");
+    require(_choice == 1 ? getPlayer(msg.sender).playerMana >= 3 : true, "Mana not sufficient for attacking!");
+    battles[battleInfo[_battleName]].moves[_player] = _choice;
+  }
 
   // User chooses attack or defense move for battle card
 //   function attackOrDefendChoice(uint8 _choice, string memory _battleName) external {
