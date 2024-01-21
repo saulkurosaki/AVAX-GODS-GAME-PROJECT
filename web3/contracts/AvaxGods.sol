@@ -130,11 +130,11 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
     _setURI(newuri);
   }
 
-//   function initialize() private {
-//     gameTokens.push(GameToken("", 0, 0, 0));
-//     players.push(Player(address(0), "", 0, 0, false));
-//     battles.push(Battle(BattleStatus.PENDING, bytes32(0), "", [address(0), address(0)], [0, 0], address(0)));
-//   }
+  function initialize() private {
+    gameTokens.push(GameToken("", 0, 0, 0));
+    players.push(Player(address(0), "", 0, 0, false));
+    battles.push(Battle(BattleStatus.PENDING, bytes32(0), "", [address(0), address(0)], [0, 0], address(0)));
+  }
 
   /// @dev Registers a player
   /// @param _name player name; set by player
