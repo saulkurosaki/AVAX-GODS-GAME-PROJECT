@@ -163,33 +163,33 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   }
 
   /// @dev internal function to create a new Battle Card
-//   function _createGameToken(string memory _name) internal returns (GameToken memory) {
-//     uint256 randAttackStrength = _createRandomNum(MAX_ATTACK_DEFEND_STRENGTH, msg.sender);
-//     uint256 randDefenseStrength = MAX_ATTACK_DEFEND_STRENGTH - randAttackStrength;
+  function _createGameToken(string memory _name) internal returns (GameToken memory) {
+    uint256 randAttackStrength = _createRandomNum(MAX_ATTACK_DEFEND_STRENGTH, msg.sender);
+    uint256 randDefenseStrength = MAX_ATTACK_DEFEND_STRENGTH - randAttackStrength;
     
-//     uint8 randId = uint8(uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 100);
-//     randId = randId % 6;
-//     if (randId == 0) {
-//       randId++;
-//     }
+    uint8 randId = uint8(uint256(keccak256(abi.encodePacked(block.timestamp, msg.sender))) % 100);
+    randId = randId % 6;
+    if (randId == 0) {
+      randId++;
+    }
     
-//     GameToken memory newGameToken = GameToken(
-//       _name,
-//       randId,
-//       randAttackStrength,
-//       randDefenseStrength
-//     );
+    GameToken memory newGameToken = GameToken(
+      _name,
+      randId,
+      randAttackStrength,
+      randDefenseStrength
+    );
 
-//     uint256 _id = gameTokens.length;
-//     gameTokens.push(newGameToken);
-//     playerTokenInfo[msg.sender] = _id;
+    uint256 _id = gameTokens.length;
+    gameTokens.push(newGameToken);
+    playerTokenInfo[msg.sender] = _id;
 
-//     _mint(msg.sender, randId, 1, '0x0');
-//     totalSupply++;
+    _mint(msg.sender, randId, 1, '0x0');
+    totalSupply++;
     
-//     emit NewGameToken(msg.sender, randId, randAttackStrength, randDefenseStrength);
-//     return newGameToken;
-//   }
+    emit NewGameToken(msg.sender, randId, randAttackStrength, randDefenseStrength);
+    return newGameToken;
+  }
 
   /// @dev Creates a new game token
   /// @param _name game token name; set by player
