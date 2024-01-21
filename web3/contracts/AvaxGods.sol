@@ -138,17 +138,17 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
 
   /// @dev Registers a player
   /// @param _name player name; set by player
-//   function registerPlayer(string memory _name, string memory _gameTokenName) external {
-//     require(!isPlayer(msg.sender), "Player already registered"); // Require that player is not already registered
+  function registerPlayer(string memory _name, string memory _gameTokenName) external {
+    require(!isPlayer(msg.sender), "Player already registered"); // Require that player is not already registered
     
-//     uint256 _id = players.length;
-//     players.push(Player(msg.sender, _name, 10, 25, false)); // Adds player to players array
-//     playerInfo[msg.sender] = _id; // Creates player info mapping
+    uint256 _id = players.length;
+    players.push(Player(msg.sender, _name, 10, 25, false)); // Adds player to players array
+    playerInfo[msg.sender] = _id; // Creates player info mapping
 
-//     createRandomGameToken(_gameTokenName);
+    createRandomGameToken(_gameTokenName);
     
-//     emit NewPlayer(msg.sender, _name); // Emits NewPlayer event
-//   }
+    emit NewPlayer(msg.sender, _name); // Emits NewPlayer event
+  }
 
   /// @dev internal function to generate random number; used for Battle Card Attack and Defense Strength
 //   function _createRandomNum(uint256 _max, address _sender) internal view returns (uint256 randomValue) {
