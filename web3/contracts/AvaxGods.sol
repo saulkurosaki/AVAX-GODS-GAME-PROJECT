@@ -106,10 +106,10 @@ contract AVAXGods is ERC1155, Ownable, ERC1155Supply {
   function getAllBattles() public view returns (Battle[] memory) {
     return battles;
   }
-//   function updateBattle(string memory _name, Battle memory _newBattle) private {
-//     require(isBattle(_name), "Battle doesn't exist");
-//     battles[battleInfo[_name]] = _newBattle;
-//   }
+  function updateBattle(string memory _name, Battle memory _newBattle) private {
+    require(isBattle(_name), "Battle doesn't exist");
+    battles[battleInfo[_name]] = _newBattle;
+  }
 
   // Events
 //   event NewPlayer(address indexed owner, string name);
