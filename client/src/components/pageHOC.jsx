@@ -1,14 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useGlobalContext } from "../context";
 import { logo, heroImg } from "../assets";
 import styles from "../styles";
+import { Alert } from "./";
 
 const PageHOC = (Component, title, description) => () => {
+  const { showAlert } = useGlobalContext();
   const navigate = useNavigate();
 
   return (
     <div className={styles.hocContainer}>
+      {showAlert?.status && (
+        <Alert type={showAlert.type} message={showAlert.message} />
+      )}
+
       <div className={styles.hocContentBox}>
         <img
           src={logo}

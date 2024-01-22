@@ -18,7 +18,7 @@ export const GlobalContextProvider = ({ children }) => {
   const [provider, setProvider] = useState("");
   const [contract, setContract] = useState("");
   const [showAlert, setShowAlert] = useState({
-    status: "false",
+    status: false,
     type: "info",
     message: "",
   });
@@ -54,7 +54,7 @@ export const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     if (showAlert?.status) {
       const timer = setTimeout(() => {
-        setShowAlert({ status: "false", type: "info", message: "" });
+        setShowAlert({ status: false, type: "info", message: "" });
       }, [5000]);
 
       return () => clearTimeout(timer);
