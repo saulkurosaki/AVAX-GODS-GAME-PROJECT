@@ -24,6 +24,11 @@ export const GlobalContextProvider = ({ children }) => {
     message: "",
   });
   const [battleName, setBattleName] = useState("");
+  const [gameData, setGameData] = useState({
+    players: [],
+    pendingBattles: [],
+    activeBattle: null,
+  });
 
   const navigate = useNavigate();
 
@@ -36,7 +41,7 @@ export const GlobalContextProvider = ({ children }) => {
     if (accounts) setWalletAddress(accounts[0]);
   };
 
-  // Set the smart contract and the provider to the state
+  // Set the smart contract and the provider to the state and Update the current wallet address
   useEffect(() => {
     const setSmartContractAndProvider = async () => {
       const web3Modal = new Web3Modal();
@@ -55,6 +60,7 @@ export const GlobalContextProvider = ({ children }) => {
     setSmartContractAndProvider();
   }, []);
 
+  // Activate event listeners for the smart contract
   useEffect(() => {
     if (contract) {
       createEventListeners({
@@ -67,6 +73,7 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [contract]);
 
+  // Handle alerts
   useEffect(() => {
     if (showAlert?.status) {
       const timer = setTimeout(() => {
@@ -77,6 +84,33 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [showAlert]);
 
+  // Set the game data to the state
+  useEffect(() => {
+    const fetchGameData = async () => {
+      const fetchedBattles = await contract.getAllBattles();
+      const pendingBattles = fetchedBattles.filter(
+        (battle) => battle.battleStatus === 0
+      );
+      let activeBattle = null;
+
+      fetchedBattles.forEach((battle) => {
+        if (
+          battle.players.find(
+            (player) => player.toLowerCase() === walletAddress.toLowerCase()
+          )
+        ) {
+          if (battle.winner.startsWith("0x00")) {
+            activeBattle = battle;
+          }
+        }
+      });
+
+      setGameData({ pendingBattles: pendingBattles.slice(1), activeBattle });
+    };
+
+    if (contract) fetchGameData();
+  }, [contract]);
+
   return (
     <GlobalContext.Provider
       value={{
@@ -86,6 +120,7 @@ export const GlobalContextProvider = ({ children }) => {
         setShowAlert,
         battleName,
         setBattleName,
+        gameData,
       }}
     >
       {children}
