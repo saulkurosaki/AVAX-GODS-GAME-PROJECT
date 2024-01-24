@@ -29,6 +29,7 @@ export const GlobalContextProvider = ({ children }) => {
     pendingBattles: [],
     activeBattle: null,
   });
+  const [updateGameData, setUpdateGameData] = useState(0);
 
   const navigate = useNavigate();
 
@@ -69,34 +70,39 @@ export const GlobalContextProvider = ({ children }) => {
         provider,
         walletAddress,
         setShowAlert,
+        setUpdateGameData,
       });
     }
-  }, [contract]);
+  }, [contract, walletAddress]);
 
   // Set the game data to the state
-  const fetchGameData = async (walletAddr) => {
-    if (contract) {
-      const fetchedBattles = await contract.getAllBattles();
-      const pendingBattles = fetchedBattles.filter(
-        (battle) => battle.battleStatus === 0
-      );
-      let activeBattle = null;
+  useEffect(() => {
+    const fetchGameData = async () => {
+      if (contract) {
+        const fetchedBattles = await contract.getAllBattles();
+        const pendingBattles = fetchedBattles.filter(
+          (battle) => battle.battleStatus === 0
+        );
+        let activeBattle = null;
 
-      fetchedBattles.forEach((battle) => {
-        if (
-          battle.players.find(
-            (player) => player.toLowerCase() === walletAddr.toLowerCase()
-          )
-        ) {
-          if (battle.winner.startsWith("0x00")) {
-            activeBattle = battle;
+        fetchedBattles.forEach((battle) => {
+          if (
+            battle.players.find(
+              (player) => player.toLowerCase() === walletAddress.toLowerCase()
+            )
+          ) {
+            if (battle.winner.startsWith("0x00")) {
+              activeBattle = battle;
+            }
           }
-        }
-      });
+        });
 
-      setGameData({ pendingBattles: pendingBattles.slice(1), activeBattle });
-    }
-  };
+        setGameData({ pendingBattles: pendingBattles.slice(1), activeBattle });
+      }
+    };
+
+    fetchGameData();
+  }, [contract, walletAddress, updateGameData]);
 
   // Handle alerts
   useEffect(() => {
@@ -119,7 +125,6 @@ export const GlobalContextProvider = ({ children }) => {
         battleName,
         setBattleName,
         gameData,
-        fetchGameData,
       }}
     >
       {children}
