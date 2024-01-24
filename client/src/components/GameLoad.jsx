@@ -29,7 +29,7 @@ const GameLoad = () => {
         </p>
 
         <div className={styles.gameLoadPlayersBox}>
-          //Player01
+          {/* Player01 */}
           <div className={`${styles.flexCenter} flex-col`}>
             <img
               src={player01}
@@ -41,7 +41,7 @@ const GameLoad = () => {
             </p>
           </div>
           <h2 className={styles.gameLoadVS}>Vs</h2>
-          //Unknown Player
+          {/* Unknown Player */}
           <div className={`${styles.flexCenter} flex-col`}>
             <img
               src={player02}
