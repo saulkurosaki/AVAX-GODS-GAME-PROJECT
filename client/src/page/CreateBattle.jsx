@@ -19,13 +19,13 @@ const CreateBattle = () => {
 
   useEffect(() => {
     fetchGameData(walletAddress);
-  }, [contract]);
+  }, [contract, walletAddress]);
 
   useEffect(() => {
     if (gameData?.activeBattle?.battleStatus === 0) {
       setWaitBattle(true);
     }
-  }, [gameData]);
+  }, [gameData, walletAddress]);
 
   const handleClick = async () => {
     if (!battleName || !battleName.trim()) return null;
