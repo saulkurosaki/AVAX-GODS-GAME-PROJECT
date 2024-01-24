@@ -18,6 +18,7 @@ export const createEventListeners = ({
   provider,
   walletAddress,
   setShowAlert,
+  setUpdateGameData,
 }) => {
   const NewPlayerEventFilter = contract.filters.NewPlayer();
 
@@ -44,5 +45,7 @@ export const createEventListeners = ({
     ) {
       navigate(`/battle/${args.battleName}`);
     }
+
+    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
   });
 };
