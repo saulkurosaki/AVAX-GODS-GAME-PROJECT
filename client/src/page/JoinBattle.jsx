@@ -6,19 +6,9 @@ import { CustomButton, PageHOC } from "../components";
 import styles from "../styles";
 
 const JoinBattle = () => {
-  const {
-    contract,
-    gameData,
-    fetchGameData,
-    walletAddress,
-    setShowAlert,
-    setBattleName,
-  } = useGlobalContext();
+  const { contract, gameData, walletAddress, setShowAlert, setBattleName } =
+    useGlobalContext();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchGameData(walletAddress);
-  }, [contract, walletAddress]);
 
   const handleClick = async (battleName) => {
     setBattleName(battleName);
