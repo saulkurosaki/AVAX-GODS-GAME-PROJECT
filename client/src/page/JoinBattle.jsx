@@ -20,6 +20,22 @@ const JoinBattle = () => {
     fetchGameData(walletAddress);
   }, [contract, walletAddress]);
 
+  const handleClick = async (battleName) => {
+    setBattleName(battleName);
+
+    try {
+      await contract.joinBattle(battleName);
+
+      setShowAlert({
+        status: true,
+        type: "success",
+        message: `Joining ${battleName}`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <h2 className={styles.joinHeadText}>Available Battles:</h2>
@@ -33,6 +49,10 @@ const JoinBattle = () => {
                 <p className={styles.joinBattleTitle}>
                   {index + 1}. {battle.name}
                 </p>
+                <CustomButton
+                  title="Join"
+                  handleClick={() => handleClick(battle.name)}
+                />
               </div>
             ))
         ) : (
