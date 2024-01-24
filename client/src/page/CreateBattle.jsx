@@ -6,20 +6,10 @@ import { useGlobalContext } from "../context";
 import { PageHOC, CustomButton, CustomInput, GameLoad } from "../components";
 
 const CreateBattle = () => {
-  const {
-    contract,
-    battleName,
-    setBattleName,
-    gameData,
-    walletAddress,
-    fetchGameData,
-  } = useGlobalContext();
+  const { contract, battleName, setBattleName, gameData, walletAddress } =
+    useGlobalContext();
   const [waitBattle, setWaitBattle] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchGameData(walletAddress);
-  }, [contract, walletAddress]);
 
   useEffect(() => {
     if (gameData?.activeBattle?.battleStatus === 0) {
