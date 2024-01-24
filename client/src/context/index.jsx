@@ -39,6 +39,7 @@ export const GlobalContextProvider = ({ children }) => {
     });
 
     if (accounts) setWalletAddress(accounts[0]);
+    console.log(walletAddress);
   };
 
   // Set the smart contract and the provider to the state and Update the current wallet address
@@ -73,6 +74,37 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [contract]);
 
+  // Set the game data to the state
+  useEffect(() => {
+    console.log(walletAddress);
+
+    const fetchGameData = async () => {
+      if (contract) {
+        const fetchedBattles = await contract.getAllBattles();
+        const pendingBattles = fetchedBattles.filter(
+          (battle) => battle.battleStatus === 0
+        );
+        let activeBattle = null;
+
+        fetchedBattles.forEach((battle) => {
+          if (
+            battle.players.find(
+              (player) => player.toLowerCase() === walletAddress.toLowerCase()
+            )
+          ) {
+            if (battle.winner.startsWith("0x00")) {
+              activeBattle = battle;
+            }
+          }
+        });
+
+        setGameData({ pendingBattles: pendingBattles.slice(1), activeBattle });
+      }
+    };
+
+    fetchGameData();
+  }, [contract]);
+
   // Handle alerts
   useEffect(() => {
     if (showAlert?.status) {
@@ -83,33 +115,6 @@ export const GlobalContextProvider = ({ children }) => {
       return () => clearTimeout(timer);
     }
   }, [showAlert]);
-
-  // Set the game data to the state
-  useEffect(() => {
-    const fetchGameData = async () => {
-      const fetchedBattles = await contract.getAllBattles();
-      const pendingBattles = fetchedBattles.filter(
-        (battle) => battle.battleStatus === 0
-      );
-      let activeBattle = null;
-
-      fetchedBattles.forEach((battle) => {
-        if (
-          battle.players.find(
-            (player) => player.toLowerCase() === walletAddress.toLowerCase()
-          )
-        ) {
-          if (battle.winner.startsWith("0x00")) {
-            activeBattle = battle;
-          }
-        }
-      });
-
-      setGameData({ pendingBattles: pendingBattles.slice(1), activeBattle });
-    };
-
-    if (contract) fetchGameData();
-  }, [contract]);
 
   return (
     <GlobalContext.Provider
