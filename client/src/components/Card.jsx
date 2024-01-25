@@ -30,6 +30,10 @@ const Card = ({ card, title, restStyles, cardRef, playerTwo }) => {
       >
         <p className={`${styles.cardPoint} text-red-500`}>{card.att}</p>
       </div>
+
+      <div className={`${styles.cardTextContainer} ${styles.flexCenter}`}>
+        <p className={styles.cardText}>{title}</p>
+      </div>
     </div>
   );
 };
