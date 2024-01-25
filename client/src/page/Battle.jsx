@@ -15,15 +15,23 @@ import {
 import { playAudio } from "../utils/animation.js";
 
 const Battle = () => {
-  const { contract, gameData, walletAddress, showAlert, setShowAlert } =
-    useGlobalContext();
+  const {
+    contract,
+    gameData,
+    walletAddress,
+    showAlert,
+    setShowAlert,
+    battleGround,
+  } = useGlobalContext();
   const [player1, setPlayer1] = useState({});
   const [player2, setPlayer2] = useState({});
   const { battleName } = useParams();
   const navigate = useNavigate();
 
   return (
-    <div className={`${styles.flexBetween} ${styles.gameContainer} astral`}>
+    <div
+      className={`${styles.flexBetween} ${styles.gameContainer} ${battleGround}`}
+    >
       <h1 className="text-xl">{battleName}</h1>
     </div>
   );
