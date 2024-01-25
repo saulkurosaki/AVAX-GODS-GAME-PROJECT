@@ -10,8 +10,16 @@ const generateRandomCardImage = () =>
 const img1 = generateRandomCardImage();
 const img2 = generateRandomCardImage();
 
-const Card = () => {
-  return <div>Card Component Test c:</div>;
+const Card = ({ card, title, restStyles, cardRef, playerTwo }) => {
+  return (
+    <div className={`${styles.cardContainer} ${restStyles}`}>
+      <img
+        src={playerTwo ? img2 : img1}
+        alt="card"
+        className={styles.cardImg}
+      />
+    </div>
+  );
 };
 
 export default Card;
