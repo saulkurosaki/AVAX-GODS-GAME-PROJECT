@@ -15,7 +15,18 @@ import {
 import { playAudio } from "../utils/animation.js";
 
 const Battle = () => {
-  return <div>Battle Page Test c:</div>;
+  const { contract, gameData, walletAddress, showAlert, setShowAlert } =
+    useGlobalContext();
+  const [player1, setPlayer1] = useState({});
+  const [player2, setPlayer2] = useState({});
+  const { battleName } = useParams();
+  const navigate = useNavigate();
+
+  return (
+    <div className={`${styles.flexBetween} ${styles.gameContainer} astral`}>
+      <h1 className="text-xl">{battleName}</h1>
+    </div>
+  );
 };
 
 export default Battle;
