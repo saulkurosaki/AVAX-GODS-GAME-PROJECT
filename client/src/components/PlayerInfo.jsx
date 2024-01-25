@@ -59,6 +59,12 @@ const PlayerInfo = ({ player, playerIcon, mt }) => {
           {player?.playerAddress?.slice(0, 10)}
         </p>
       </ReactTooltip>
+
+      <ReactTooltip
+        id={`Health-${mt ? "1" : "2"}`}
+        effect="solid"
+        backgroundColor="#7f46f0"
+      />
     </div>
   );
 };
