@@ -23,6 +23,23 @@ const GameInfo = () => {
           <img src={alertIcon} alt="info" className={styles.gameInfoIconImg} />
         </div>
       </div>
+
+      <div
+        className={`${styles.gameInfoSidebar} ${
+          toggleSidebar ? "translate-x-0" : "translate-x-full"
+        } ${styles.glassEffect} ${styles.flexBetween} backdrop-blur-3xl`}
+      >
+        <div className="flex flex-col">
+          <div className={styles.gameInfoSidebarCloseBox}>
+            <div
+              className={`${styles.flexCenter} ${styles.gameInfoSidebarClose}`}
+              onClick={() => setToggleSidebar(false)}
+            >
+              X
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };
