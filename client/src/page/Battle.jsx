@@ -28,6 +28,58 @@ const Battle = () => {
   const { battleName } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const getPlayerInfo = async () => {
+      try {
+        let player01Address = null;
+        let player02Address = null;
+
+        if (
+          gameData.activeBattle.players[0].toLowerCase() ===
+          walletAddress.toLowerCase()
+        ) {
+          player01Address = gameData.activeBattle.players[0];
+          player02Address = gameData.activeBattle.players[1];
+        } else {
+          player01Address = gameData.activeBattle.players[1];
+          player02Address = gameData.activeBattle.players[0];
+        }
+
+        const p1TokenData = await contract.getPlayerToken(player01Address);
+        const player01 = await contract.getPlayer(player01Address);
+        const player02 = await contract.getPlayer(player02Address);
+
+        const p1Att = p1TokenData.attackStrength.toNumber();
+        const p1Def = p1TokenData.defenseStrength.toNumber();
+
+        const p1Health = player01.playerHealth.toNumber();
+        const p1Mana = player01.playerMana.toNumber();
+
+        const p2Health = player02.playerHealth.toNumber();
+        const p2Mana = player02.playerMana.toNumber();
+
+        setPlayer1({
+          ...player01,
+          att: p1Att,
+          def: p1Def,
+          health: p1Health,
+          mana: p1Mana,
+        });
+        setPlayer2({
+          ...player02,
+          att: "X",
+          def: "X",
+          health: p2Health,
+          mana: p2Mana,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (contract && gameData.activeBattle) getPlayerInfo();
+  }, [contract, gameData, battleName, walletAddress]);
+
   return (
     <div
       className={`${styles.flexBetween} ${styles.gameContainer} ${battleGround}`}
