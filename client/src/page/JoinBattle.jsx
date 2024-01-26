@@ -6,8 +6,14 @@ import { CustomButton, PageHOC } from "../components";
 import styles from "../styles";
 
 const JoinBattle = () => {
-  const { contract, gameData, walletAddress, setShowAlert, setBattleName } =
-    useGlobalContext();
+  const {
+    contract,
+    gameData,
+    walletAddress,
+    setShowAlert,
+    setBattleNam,
+    setErrorMessage,
+  } = useGlobalContext();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,7 +33,7 @@ const JoinBattle = () => {
         message: `Joining ${battleName}`,
       });
     } catch (error) {
-      console.log(error);
+      setErrorMessage(error);
     }
   };
 
