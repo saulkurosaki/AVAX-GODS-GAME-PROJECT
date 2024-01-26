@@ -82,6 +82,18 @@ const Battle = () => {
 
   const makeAMove = async (choice) => {
     playAudio(choice === 1 ? attackSound : defenseSound);
+
+    try {
+      await contract.attackOrDefendChoice(choice, battleName);
+
+      setShowAlert({
+        status: true,
+        type: "info",
+        message: `Initiating ${choice === 1 ? "attack" : "defense"}`,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
