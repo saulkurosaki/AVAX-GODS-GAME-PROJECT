@@ -74,7 +74,7 @@ const Battle = () => {
           mana: p2Mana,
         });
       } catch (error) {
-        console.log(error);
+        setErrorMessage(error);
       }
     };
 
