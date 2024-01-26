@@ -7,3 +7,4 @@ export { default as ActionButton } from "./ActionButton";
 export { default as Card } from "./Card";
 export { default as GameInfo } from "./GameInfo";
 export { default as PlayerInfo } from "./PlayerInfo";
+export { default as OnboardModal } from "./OnboardModal";
