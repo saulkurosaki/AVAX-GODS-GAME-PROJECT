@@ -41,7 +41,7 @@ const Home = () => {
     };
 
     if (contract) checkForPlayerToken();
-  }, [contract]);
+  }, [contract, walletAddress]);
 
   return (
     <div className="flex flex-col">
