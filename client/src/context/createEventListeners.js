@@ -70,23 +70,23 @@ export const createEventListeners = ({
     console.log("Battle move initiated!", args);
   });
 
-  // const RoundEndedEventFilter = contract.filters.RoundEnded();
+  const RoundEndedEventFilter = contract.filters.RoundEnded();
 
-  // AddNewEvent(RoundEndedEventFilter, provider, ({ args }) => {
-  //   console.log("Round Ended!", args, walletAddress);
+  AddNewEvent(RoundEndedEventFilter, provider, ({ args }) => {
+    console.log("Round Ended!", args, walletAddress);
 
-  //   for (let i = 0; i < args.damagedPlayers.length; i += 1) {
-  //     if (args.damagedPlayers[i] !== emptyAccount) {
-  //       if (args.damagedPlayers[i] === walletAddress) {
-  //         sparcle(getCoords(player1Ref));
-  //       } else if (args.damagedPlayers[i] !== walletAddress) {
-  //         sparcle(getCoords(player2Ref));
-  //       }
-  //     } else {
-  //       playAudio(defenseSound);
-  //     }
-  //   }
+    for (let i = 0; i < args.damagedPlayers.length; i += 1) {
+      if (args.damagedPlayers[i] !== emptyAccount) {
+        if (args.damagedPlayers[i] === walletAddress) {
+          sparcle(getCoords(player1Ref));
+        } else if (args.damagedPlayers[i] !== walletAddress) {
+          sparcle(getCoords(player2Ref));
+        }
+      } else {
+        playAudio(defenseSound);
+      }
+    }
 
-  //   setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
-  // });
+    setUpdateGameData((prevUpdateGameData) => prevUpdateGameData + 1);
+  });
 };
