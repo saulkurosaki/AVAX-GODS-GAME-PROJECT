@@ -21,6 +21,11 @@ const JoinBattle = () => {
       navigate(`/battle/${gameData.activeBattle.name}`);
   }, [gameData, walletAddress]);
 
+  useEffect(() => {
+    if (gameData?.activeBattle?.battleStatus === 1)
+      navigate(`/battle/${gameData.activeBattle.name}`);
+  }, [gameData, walletAddress]);
+
   const handleClick = async (battleName) => {
     setBattleName(battleName);
 
