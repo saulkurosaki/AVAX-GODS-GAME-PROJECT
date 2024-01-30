@@ -5,7 +5,7 @@ import { PageHOC, CustomInput, CustomButton } from "../components";
 import { useGlobalContext } from "../context";
 
 const Home = () => {
-  const { contract, walletAddress, setShowAlert, gameData } =
+  const { contract, walletAddress, setShowAlert, gameData, setErrorMessage } =
     useGlobalContext();
   const [playerName, setPlayerName] = useState("");
 
@@ -25,11 +25,7 @@ const Home = () => {
         });
       }
     } catch (error) {
-      setShowAlert({
-        status: true,
-        type: "failure",
-        message: "Something went wrong!",
-      });
+      setErrorMessage(error);
     }
   };
 
