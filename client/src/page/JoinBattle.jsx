@@ -11,7 +11,7 @@ const JoinBattle = () => {
     gameData,
     walletAddress,
     setShowAlert,
-    setBattleNam,
+    setBattleName,
     setErrorMessage,
   } = useGlobalContext();
   const navigate = useNavigate();
