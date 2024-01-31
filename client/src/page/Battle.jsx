@@ -1,8 +1,9 @@
+/* eslint-disable prefer-destructuring */
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import styles from "../styles";
-import { Alert, ActionButton, Card, GameInfo, PlayerInfo } from "../components";
+import { ActionButton, Alert, Card, GameInfo, PlayerInfo } from "../components";
 import { useGlobalContext } from "../context";
 import {
   attack,
@@ -18,16 +19,16 @@ const Battle = () => {
   const {
     contract,
     gameData,
+    battleGround,
     walletAddress,
+    setErrorMessage,
     showAlert,
     setShowAlert,
-    battleGround,
-    setErrorMessage,
     player1Ref,
     player2Ref,
   } = useGlobalContext();
-  const [player1, setPlayer1] = useState({});
   const [player2, setPlayer2] = useState({});
+  const [player1, setPlayer1] = useState({});
   const { battleName } = useParams();
   const navigate = useNavigate();
 
@@ -54,34 +55,34 @@ const Battle = () => {
 
         const p1Att = p1TokenData.attackStrength.toNumber();
         const p1Def = p1TokenData.defenseStrength.toNumber();
-
-        const p1Health = player01.playerHealth.toNumber();
-        const p1Mana = player01.playerMana.toNumber();
-
-        const p2Health = player02.playerHealth.toNumber();
-        const p2Mana = player02.playerMana.toNumber();
+        const p1H = player01.playerHealth.toNumber();
+        const p1M = player01.playerMana.toNumber();
+        const p2H = player02.playerHealth.toNumber();
+        const p2M = player02.playerMana.toNumber();
 
         setPlayer1({
           ...player01,
           att: p1Att,
           def: p1Def,
-          health: p1Health,
-          mana: p1Mana,
+          health: p1H,
+          mana: p1M,
         });
-        setPlayer2({
-          ...player02,
-          att: "X",
-          def: "X",
-          health: p2Health,
-          mana: p2Mana,
-        });
+        setPlayer2({ ...player02, att: "X", def: "X", health: p2H, mana: p2M });
       } catch (error) {
-        setErrorMessage(error);
+        setErrorMessage(error.message);
       }
     };
 
     if (contract && gameData.activeBattle) getPlayerInfo();
-  }, [contract, gameData, battleName, walletAddress]);
+  }, [contract, gameData, battleName]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!gameData?.activeBattle) navigate("/");
+    }, [2000]);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const makeAMove = async (choice) => {
     playAudio(choice === 1 ? attackSound : defenseSound);
@@ -100,14 +101,6 @@ const Battle = () => {
       setErrorMessage(error);
     }
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!gameData?.activeBattle) navigate("/");
-    }, [2000]);
-
-    return () => clearTimeout(timer);
-  }, [gameData, walletAddress]);
 
   return (
     <div
@@ -149,7 +142,7 @@ const Battle = () => {
         </div>
       </div>
 
-      <PlayerInfo player={player1} playerIcon={player01Icon} mt />
+      <PlayerInfo player={player1} playerIcon={player01Icon} />
 
       <GameInfo />
     </div>
