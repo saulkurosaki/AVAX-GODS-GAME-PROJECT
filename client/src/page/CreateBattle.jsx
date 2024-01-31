@@ -1,19 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import styles from "../styles";
 import { useGlobalContext } from "../context";
-import { PageHOC, CustomButton, CustomInput, GameLoad } from "../components";
+import { CustomButton, CustomInput, GameLoad, PageHOC } from "../components";
 
 const CreateBattle = () => {
-  const {
-    contract,
-    battleName,
-    setBattleName,
-    gameData,
-    walletAddress,
-    setErrorMessage,
-  } = useGlobalContext();
+  const { contract, gameData, battleName, setBattleName, setErrorMessage } =
+    useGlobalContext();
   const [waitBattle, setWaitBattle] = useState(false);
   const navigate = useNavigate();
 
@@ -23,15 +17,13 @@ const CreateBattle = () => {
     } else if (gameData?.activeBattle?.battleStatus === 0) {
       setWaitBattle(true);
     }
-  }, [gameData, walletAddress]);
+  }, [gameData]);
 
   const handleClick = async () => {
-    if (!battleName || !battleName.trim()) return null;
+    if (battleName === "" || battleName.trim() === "") return null;
 
     try {
-      await contract.createBattle(battleName, {
-        gasLimit: 200000,
-      });
+      await contract.createBattle(battleName);
 
       setWaitBattle(true);
     } catch (error) {
@@ -46,7 +38,7 @@ const CreateBattle = () => {
       <div className="flex flex-col mb-5">
         <CustomInput
           label="Battle"
-          placeholder="Enter battle name"
+          placeHolder="Enter battle name"
           value={battleName}
           handleValueChange={setBattleName}
         />
@@ -54,10 +46,9 @@ const CreateBattle = () => {
         <CustomButton
           title="Create Battle"
           handleClick={handleClick}
-          restStyles="mt-5"
+          restStyles="mt-6"
         />
       </div>
-
       <p className={styles.infoText} onClick={() => navigate("/join-battle")}>
         Or join already existing battles
       </p>
@@ -70,5 +61,5 @@ export default PageHOC(
   <>
     Create <br /> a new Battle
   </>,
-  <>Create your own battle and wait for other player to join you</>
+  <>Create your own battle and wait for other players to join you</>
 );
