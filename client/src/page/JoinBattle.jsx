@@ -6,33 +6,26 @@ import { CustomButton, PageHOC } from "../components";
 import styles from "../styles";
 
 const JoinBattle = () => {
+  const navigate = useNavigate();
   const {
     contract,
     gameData,
-    walletAddress,
     setShowAlert,
     setBattleName,
     setErrorMessage,
+    walletAddress,
   } = useGlobalContext();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (gameData?.activeBattle?.battleStatus === 1)
       navigate(`/battle/${gameData.activeBattle.name}`);
-  }, [gameData, walletAddress]);
-
-  useEffect(() => {
-    if (gameData?.activeBattle?.battleStatus === 1)
-      navigate(`/battle/${gameData.activeBattle.name}`);
-  }, [gameData, walletAddress]);
+  }, [gameData]);
 
   const handleClick = async (battleName) => {
     setBattleName(battleName);
 
     try {
-      await contract.joinBattle(battleName, {
-        gasLimit: 200000,
-      });
+      await contract.joinBattle(battleName);
 
       setShowAlert({
         status: true,
@@ -51,7 +44,11 @@ const JoinBattle = () => {
       <div className={styles.joinContainer}>
         {gameData.pendingBattles.length ? (
           gameData.pendingBattles
-            .filter((battle) => !battle.players.includes(walletAddress))
+            .filter(
+              (battle) =>
+                !battle.players.includes(walletAddress) &&
+                battle.battleStatus !== 1
+            )
             .map((battle, index) => (
               <div key={battle.name + index} className={styles.flexBetween}>
                 <p className={styles.joinBattleTitle}>
