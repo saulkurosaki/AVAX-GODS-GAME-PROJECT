@@ -25,7 +25,7 @@ const Home = () => {
           message: `${playerName} is being summoned!`,
         });
 
-        setTimeout(() => navigate("/create-battle"), 8000);
+        setTimeout(() => navigate("/create-battle"), 5000);
       }
     } catch (error) {
       setErrorMessage(error);
@@ -41,13 +41,13 @@ const Home = () => {
     };
 
     if (contract) createPlayerToken();
-  }, [contract]);
+  }, [contract, walletAddress]);
 
   useEffect(() => {
     if (gameData.activeBattle) {
       navigate(`/battle/${gameData.activeBattle.name}`);
     }
-  }, [gameData]);
+  }, [gameData, walletAddress]);
 
   return (
     walletAddress && (
