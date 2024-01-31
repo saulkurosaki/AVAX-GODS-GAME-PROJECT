@@ -7,7 +7,7 @@ import { alertIcon, gameRules } from "../assets";
 import styles from "../styles";
 
 const GameInfo = () => {
-  const { contract, gameData, setShowAlert, setErrorMessage } =
+  const { contract, gameData, setErrorMessage, setShowAlert } =
     useGlobalContext();
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const navigate = useNavigate();
@@ -72,8 +72,10 @@ const GameInfo = () => {
             title="Change Battleground"
             handleClick={() => navigate("/battleground")}
           />
-
-          <CustomButton title="Exit Battle" handleClick={handleBattleExit} />
+          <CustomButton
+            title="Exit Battle"
+            handleClick={() => handleBattleExit()}
+          />
         </div>
       </div>
     </>
