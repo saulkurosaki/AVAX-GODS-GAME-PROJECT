@@ -40,17 +40,18 @@ export const GlobalContextProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
+  //* Set battleground to local storage
   useEffect(() => {
-    const battlegroundFromLocalStorage = localStorage.getItem("battleground");
+    const isBattleground = localStorage.getItem("battleground");
 
-    if (battlegroundFromLocalStorage) {
-      setBattleGround(battlegroundFromLocalStorage);
+    if (isBattleground) {
+      setBattleGround(isBattleground);
     } else {
       localStorage.setItem("battleground", battleGround);
     }
   }, []);
 
-  // Reset web3 onboarding modal params
+  //* Reset web3 onboarding modal params
   useEffect(() => {
     const resetParams = async () => {
       const currentStep = await GetParams();
@@ -92,23 +93,23 @@ export const GlobalContextProvider = ({ children }) => {
     setSmartContractAndProvider();
   }, []);
 
-  // Activate event listeners for the smart contract
+  //* Activate event listeners for the smart contract
   useEffect(() => {
-    if (step !== -1 && contract) {
+    if (step === -1 && contract) {
       createEventListeners({
         navigate,
         contract,
         provider,
         walletAddress,
         setShowAlert,
-        setUpdateGameData,
         player1Ref,
         player2Ref,
+        setUpdateGameData,
       });
     }
-  }, [contract, walletAddress, step]);
+  }, [step, contract, walletAddress]);
 
-  // Set the game data to the state
+  //* Set the game data to the state
   useEffect(() => {
     const fetchGameData = async () => {
       if (contract) {
@@ -135,9 +136,9 @@ export const GlobalContextProvider = ({ children }) => {
     };
 
     fetchGameData();
-  }, [contract, walletAddress, updateGameData]);
+  }, [contract, updateGameData, walletAddress]);
 
-  // Handle alerts
+  //* Handle alerts
   useEffect(() => {
     if (showAlert?.status) {
       const timer = setTimeout(() => {
@@ -148,7 +149,7 @@ export const GlobalContextProvider = ({ children }) => {
     }
   }, [showAlert]);
 
-  // Handle error messages
+  //* Handle error messages
   useEffect(() => {
     if (errorMessage) {
       const parsedErrorMessage = errorMessage?.reason
