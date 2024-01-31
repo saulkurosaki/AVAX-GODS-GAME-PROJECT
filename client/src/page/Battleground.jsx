@@ -7,10 +7,10 @@ import { battlegrounds } from "../assets";
 import { useGlobalContext } from "../context";
 
 const Battleground = () => {
-  const { setShowAlert, showAlert, setBattleGround } = useGlobalContext();
   const navigate = useNavigate();
+  const { setBattleGround, setShowAlert, showAlert } = useGlobalContext();
 
-  const handleBattleGroundChoice = (ground) => {
+  const handleBattleChoice = (ground) => {
     setBattleGround(ground.id);
 
     localStorage.setItem("battleground", ground.id);
@@ -28,7 +28,7 @@ const Battleground = () => {
 
   return (
     <div className={`${styles.flexCenter} ${styles.battlegroundContainer}`}>
-      {showAlert?.status && (
+      {showAlert.status && (
         <Alert type={showAlert.type} message={showAlert.message} />
       )}
 
@@ -43,7 +43,7 @@ const Battleground = () => {
           <div
             key={ground.id}
             className={`${styles.flexCenter} ${styles.battleGroundCard}`}
-            onClick={() => handleBattleGroundChoice(ground)}
+            onClick={() => handleBattleChoice(ground)}
           >
             <img
               src={ground.image}
