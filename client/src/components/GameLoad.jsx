@@ -40,7 +40,9 @@ const GameLoad = () => {
 
           <div className={`${styles.flexCenter} flex-col`}>
             <img src={player02} className={styles.gameLoadPlayerImg} />
-            <p className={styles.gameLoadPlayerText}>??????????</p>
+            <p className={styles.gameLoadPlayerText}>
+              ??????????????????????????????
+            </p>
           </div>
         </div>
 
