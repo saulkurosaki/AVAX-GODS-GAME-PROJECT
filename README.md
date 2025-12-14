@@ -11,7 +11,7 @@
 ### 📈 Key Metrics, Anti-AI Strategy, and Business Alignment
 
 *   **Performance Priority:** Focused on delivering low-latency **real-time interaction** to ensure a seamless multiplayer experience, critical for user engagement and retention.
-*   **Strategy Anti-IA:** The solution relies on complex architectural planning to manage **live interaction with smart contracts** and **real-time multiplayer functionality**, areas that demand meticulous security and architectural foresight.
+*   **Strategy Anti-AI:** The solution relies on complex architectural planning to manage **live interaction with smart contracts** and **real-time multiplayer functionality**, areas that demand meticulous security and architectural foresight.
 *   **Monetization/Value Stream:** Manages core financial flows through **live interaction with Smart Contracts** and **NFT asset ownership** (Solidity/Ethers), demonstrating competency in Web3 monetization principles.
 
 ---
@@ -20,7 +20,7 @@
 
 ### 🛠️ Core Technology Stack
 
-| Technology | Rol and Strategic Justification |
+| Technology | Role and Strategic Justification |
 | :--- | :--- |
 | **Framework** | ReactJs / Next.js (TypeScript) |
 | **Backend/DB** | Solidity / Ethers |
@@ -49,7 +49,7 @@
 ### 💻 Local Setup (Quick Start)
 
 ```bash
-# 1. Clonar el repositorio
+# 1. Clone repo
 git clone https://github.com/saulkurosaki/AVAX-GODS-GAME-PROJECT
 
 # 2. Install dependencies
